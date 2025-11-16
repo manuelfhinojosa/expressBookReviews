@@ -61,18 +61,30 @@ regd_users.put("/auth/review/:isbn", (req, res) => {
   let book = books[isbn];
 
   if(book){
-    let review = req.body.reviews;
+    let review = req.body.review;
 
     if(review){
         book["reviews"] = review;
     }
 
     books[isbn] = book;
-    res.send(`Book with isbn ${isbn} updated`);
+    res.send(`Book with isbn ${isbn} reviewed`);
   } else{
     res.send("Unable to find book!")
   }
 
+});
+
+//Delete book review
+regd_users.delete("/auth/review/:isbn", (req, res) => {
+    const isbn = req.params.isbn;
+    if (isbn) {
+        // Delete friend from 'friends' object based on provided email
+        delete books[isbn].rev;
+    }
+    
+    // Send response confirming deletion of friend
+    res.send(`Book review with isbn ${isbn} deleted.`);
 });
 
 module.exports.authenticated = regd_users;
