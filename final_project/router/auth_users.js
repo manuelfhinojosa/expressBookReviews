@@ -80,7 +80,7 @@ regd_users.delete("/auth/review/:isbn", (req, res) => {
     const isbn = req.params.isbn;
     if (isbn) {
         // Delete friend from 'friends' object based on provided email
-        delete books[isbn].rev;
+        delete books[isbn].review;
     }
     
     // Send response confirming deletion of friend
