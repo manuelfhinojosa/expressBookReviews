@@ -41,9 +41,10 @@ public_users.get('/isbn/:isbn',function (req, res) {
 public_users.get('/author/:author',function (req, res) {
   //Write your code here
   const targetauthor = req.params.author;
-  let book = books.find(book => book.author === targetauthor);
+  let book = Object.values(books);
+  const targetbook = book.filter(book => book.author === targetauthor);
 
-    res.send(books[book.isbn]);
+    res.send(targetbook);
 });
 
 // Get all books based on title
